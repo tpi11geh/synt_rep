@@ -18,16 +18,16 @@ B=np.zeros(L+1)
 randVar=np.random.rand(1,K+L)-0.5
                       
 def Hurst1(x,letter):
-    if x<letter/26:
-        return -0.2*x/(letter/26)+.6
+    if x<letter/M:
+        return -0.2*x/(letter/M)+.6
     else:
-        return .2*(x-1)/(1-letter/26)+.6   
+        return .2*(x-1)/(1-letter/M)+.6   
           
 def Hurst2(x,letter):
-    if x<var/26:
-        return  0.2*x/(letter/26)+0.4
+    if x<var/M:
+        return  0.2*x/(letter/M)+0.4
     else:
-        return 0.4+0.2*(1-x)/(1-(letter/26)) 
+        return 0.4+0.2*(1-x)/(1-(letter/M)) 
     
 def Hurst3(x,letter):
     return -0.1*np.sin(2*np.pi*x*((letter+7)/8))+.5
@@ -42,18 +42,16 @@ def Hurst6(x,letter):
     return 0.6-(.2/(1+np.exp(-550.*(x-(.2*(letter+5)/8)))))  
 
 def Hurst7(x,letter):
-    if x<var/26:
-        return  0.2*x/(letter/26)+0.4
+    if x<var/M:
+        return  0.2*x/(letter/M)+0.4
     else:
         return 0.6
     
 def Hurst8(x,letter):
-    if x<var/26:
-        return  -0.2*x/(var/26)+0.6
+    if x<var/M:
+        return  -0.2*x/(var/M)+0.6
     else:
         return .4
-                      
-                                    
                       
 def Hurst(x,var):
     switcher = {0 : Hurst1(tn,letter),
@@ -66,9 +64,10 @@ def Hurst(x,var):
            7 : Hurst8(tn,letter),
     }
     return switcher.get(x%8)
-def getMbm(letter)
-for i in range(len(B)):
-    sum1=0;
-    sum2=0;
-    H_tn=Hurst(t_pos[i],letter)
+
+def getMbm(letter):
+    for i in range(len(B)):
+        sum1=0;
+        sum2=0;
+        H_tn=Hurst(t_pos[i],letter)
 
