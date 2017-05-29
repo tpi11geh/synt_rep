@@ -8,6 +8,7 @@ Created on Sat May 13 11:24:49 2017
 import numpy as np
 
 #
+
 M=26
 L=1000
 K=10*L
@@ -24,7 +25,7 @@ def Hurst1(x,letter):
         return .2*(x-1)/(1-letter/M)+.6   
           
 def Hurst2(x,letter):
-    if x<var/M:
+    if x<letter/M:
         return  0.2*x/(letter/M)+0.4
     else:
         return 0.4+0.2*(1-x)/(1-(letter/M)) 
@@ -42,18 +43,18 @@ def Hurst6(x,letter):
     return 0.6-(.2/(1+np.exp(-550.*(x-(.2*(letter+5)/8)))))  
 
 def Hurst7(x,letter):
-    if x<var/M:
+    if x<letter/M:
         return  0.2*x/(letter/M)+0.4
     else:
         return 0.6
     
 def Hurst8(x,letter):
-    if x<var/M:
-        return  -0.2*x/(var/M)+0.6
+    if x<letter/M:
+        return  -0.2*x/(letter/M)+0.6
     else:
         return .4
                       
-def Hurst(x,var):
+def Hurst(tn,letter):
     switcher = {0 : Hurst1(tn,letter),
            1 : Hurst2(tn,letter),
            2 : Hurst3(tn,letter),
@@ -63,11 +64,25 @@ def Hurst(x,var):
            6 : Hurst7(tn,letter),
            7 : Hurst8(tn,letter),
     }
-    return switcher.get(x%8)
+    return switcher.get(tn%8)
 
 def getMbm(letter):
-    for i in range(len(B)):
+    for i in range(len(B)-1):
         sum1=0;
         sum2=0;
         H_tn=Hurst(t_pos[i],letter)
 
+def genSamples(n):
+    samples=np.zeros([n*M,L])
+    for i in range(M):
+        for j in range(n):
+            samples[i+j,:]=getMbm(i)
+    return samples        
+
+    
+            
+        
+X=genSamples(5)
+print(np.size(X,0))
+print()
+       
