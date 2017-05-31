@@ -44,8 +44,8 @@ def Hurst(x,letter):
         return x_out
  
 x=np.linspace(0,1,L)
-#y=np.zeros([6,L])
-#for i in range():
-y=Hurst(x,22)
-plt.plot(y)
-plt.show()
+for i in range(1,27):
+    y=Hurst(x,i)
+    plt.plot(y)
+    print('----------i=============',i)
+    plt.show()
