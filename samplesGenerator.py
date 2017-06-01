@@ -101,7 +101,8 @@ sim_var=getVar(nbrOfSam,Xsam)
 Xsam_Uvar=genSamplesVar(nbrOfSam,sim_var)
 #sim_varU=getVar(nbrOfSam,Xsam_Uvar)
 #samplePlot(1,sim_varU)
-save(Xsam,'DATA')
+filename='DATA_50'
+save(Xsam,filename)
 end = time.time()
 print(end - start)
        
