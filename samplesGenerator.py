@@ -150,15 +150,20 @@ class SimulateVar(object):
         M=self.M
         L=self.L
         
-        norm=np.zeros([M,L])
+        norm=np.ones([M,L])
         for m in range(M):
-            for l in range(L):
+            for l in range(1,L):
                 norm[m,l]=np.var(sampleSet[m*n:m*n+n,l])
         
         norm=1/np.sqrt(norm)        
         normedSampleSet=np.zeros([n*M,L])
         for m in range(M):
-            normedSampleSet[m*n:m*n+n,1:]=np.multiply(sampleSet[m*n:m*n+n,1:],norm[m,1:])
+            normedSampleSet[m*n:m*n+n,:]=np.multiply(sampleSet[m*n:m*n+n,:],norm[m,:])
         return normedSampleSet
+    
+    def save(self,saveData,filename):
+        ofile = open(filename, "w")
+        json.dump(saveData.tolist(), ofile, sort_keys = True, indent = 4)
+        ofile.close()
 
        

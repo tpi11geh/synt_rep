@@ -17,6 +17,9 @@ ss=sg.SampleSet()
 Xsam=ss.genSamplesWithOutNorm(nbr)
 #
 sv=sg.SimulateVar()
+sim_var=sv.getVar(nbr,Xsam)
+filename='variance'
+sv.save(sim_var,filename)
 Xsam_normed=sv.normSet(nbr,Xsam)
 #
 #
@@ -24,9 +27,9 @@ Xsam_normed=sv.normSet(nbr,Xsam)
 #s.samplePlot(nbr,Xsam_Uvar)
 #sim_varU=sv.getVar(nbr,Xsam_Uvar)
 #ss.samplePlot(1,sim_varU)
-ss.samplePlot(nbr,Xsam_normed)
-filename='DATA_Normed'
-ss.save(Xsam_normed,filename)
+#ss.samplePlot(nbr,Xsam_normed)
+#filename='DATA_Normed'
+#ss.save(Xsam_normed,filename)
 
 #e=sg.Encrypt()
 #word=np.zeros([3,500])
