@@ -3,7 +3,7 @@
 """
 Created on Wed Jun 14 18:08:03 2017
 
-@author: hugowerner
+@author: Gustaf Ehn & Hugo Werner
 """
 import numpy as np
 import scipy.special as sps
